@@ -6,7 +6,6 @@ using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Moq;
 using SendGrid;
-using SendGrid.Helpers.Errors.Model;
 
 namespace BirthdayGreeting.Tests.UnitTests;
 
@@ -118,7 +117,7 @@ public class BirthdayGreetingServiceTests
                 It.Is<LogLevel>(logLevel => logLevel == LogLevel.Information),
                 It.Is<EventId>(eventId => eventId.Id == 0),
                 It.Is<It.IsAnyType>((@object, @type) =>
-                    @object.ToString().Contains("Email sent to ")),
+                    @object.ToString()!.Contains("Email sent to ")),
                 It.IsAny<Exception>(),
                 It.IsAny<Func<It.IsAnyType, Exception, string>>()),
             Times.Exactly(2));
@@ -227,7 +226,7 @@ public class BirthdayGreetingServiceTests
                 It.Is<LogLevel>(logLevel => logLevel == LogLevel.Information),
                 It.Is<EventId>(eventId => eventId.Id == 0),
                 It.Is<It.IsAnyType>((@object, @type) =>
-                    @object.ToString().Contains("Email sent to ")),
+                    @object.ToString()!.Contains("Email sent to ")),
                 It.IsAny<Exception>(),
                 It.IsAny<Func<It.IsAnyType, Exception, string>>()),
             Times.Exactly(2));
